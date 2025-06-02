@@ -1,0 +1,95 @@
+<!DOCTYPE html><html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>Wesołych Świąt!</title>
+    <style>
+        body {
+            background-color: #fff176; /* jasny żółty */
+            font-family: Comic Sans MS, cursive, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+        .letter {
+            background-color: #fffaf0;
+            width: 80%;
+            height: 80%;
+            box-shadow: 0 0 20px rgba(0,0,0,0.2);
+            display: flex;
+            padding: 20px;
+            border-radius: 20px;
+        }
+        .left, .right {
+            width: 50%;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        h1 {
+            color: #d2691e;
+            font-size: 2.5em;
+        }
+        p {
+            font-size: 1.2em;
+            margin: 10px 0;
+        }
+        #datetime {
+            font-weight: bold;
+        }
+        .bunny {
+            width: 200px;
+            display: block;
+            margin: 0 auto;
+        }
+        .falling-flower {
+            width: 40px;
+            position: absolute;
+            top: -60px;
+            animation: fall 6s linear infinite;
+        }
+        @keyframes fall {
+            0% { top: -60px; }
+            100% { top: 100%; }
+        }
+    </style>
+</head>
+<body>
+    <div class="letter">
+        <div class="left">
+            <h1>🐣 Wesołych Świąt Wielkanocnych! 🐣</h1>
+            <p>Niech te święta przyniosą Ci:</p>
+            <p>🏐 nową piłkę do siatkówki</p>
+            <p>📱 nowy telefon</p>
+            <p>🍫 zapas czekoladowych Milków!</p>
+            <p><span id="datetime"></span></p>
+        </div><div class="right">
+        <img class="bunny" src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Easter_Bunny.svg/512px-Easter_Bunny.svg.png" alt="Królik Wielkanocny">
+    </div>
+</div>
+
+<script>
+    function updateDateTime() {
+        const now = new Date();
+        const day = now.toLocaleDateString('pl-PL', { weekday: 'long' });
+        const date = now.toLocaleDateString('pl-PL');
+        const time = now.toLocaleTimeString('pl-PL');
+        document.getElementById('datetime').innerText = `Dzień: ${day}, ${date} * Czas: ${time}`;
+    }
+    setInterval(updateDateTime, 1000);
+    updateDateTime();
+
+    for (let i = 0; i < 15; i++) {
+        let flower = document.createElement('img');
+        flower.src = 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d6/Emoji_u1f338.svg/64px-Emoji_u1f338.svg.png';
+        flower.classList.add('falling-flower');
+        flower.style.left = Math.random() * window.innerWidth + 'px';
+        flower.style.animationDuration = (4 + Math.random() * 3) + 's';
+        document.body.appendChild(flower);
+    }
+</script>
+
+</body>
+</html>
